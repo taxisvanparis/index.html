@@ -3,147 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxi Van Paris | Mercedes Classe V</title>
+    <title>Van Classe V Paris | Réservation 92, 95, 78, 93, 77</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #c9a24a; --black: #000000; --grey: #121212; --white: #ffffff; }
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--black); color: var(--white); margin: 0; padding: 0; }
-        
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://images.vroomerz.com/vroomerz/rental-mercedes-v-class-vroomerz.jpg');
-            background-size: cover; background-position: center; height: 250px; display: flex; align-items: center; justify-content: center; text-align: center;
-        }
-
-        .container { max-width: 480px; margin: -50px auto 30px; padding: 15px; }
-        .card { background: var(--grey); border-radius: 15px; padding: 25px; border: 1px solid #333; box-shadow: 0 15px 40px rgba(0,0,0,0.7); }
-        
-        h1 { color: var(--gold); font-size: 1.7rem; text-transform: uppercase; margin: 0; letter-spacing: 1px; }
-        label { display: block; margin: 15px 0 5px; font-size: 0.75rem; color: var(--gold); font-weight: bold; letter-spacing: 1px; }
-        input, select { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #333; background: #222; color: white; box-sizing: border-box; font-size: 1rem; }
-
-        .price-box { background: linear-gradient(135deg, #c9a24a, #8e6d2a); color: var(--black); padding: 20px; border-radius: 10px; text-align: center; margin: 25px 0; display: none; }
-        .price-val { font-size: 2.5rem; font-weight: 900; }
-
-        .btn { display: block; width: 100%; padding: 18px; border-radius: 8px; font-weight: bold; text-align: center; text-decoration: none; border: none; font-size: 1.1rem; transition: 0.3s; cursor: pointer; }
-        .btn-white { background: var(--white); color: var(--black); margin-bottom: 12px; }
-        .btn-gold { background: var(--gold); color: var(--black); }
-        
-        .footer-icons { display: flex; justify-content: space-around; margin-top: 25px; font-size: 0.75rem; opacity: 0.6; font-weight: bold; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: #fff; }
+        .gold-text { color: #D4AF37; }
+        .gold-bg { background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); color: #000; }
+        .font-luxury { font-family: 'Cinzel', serif; }
+        .card-glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
+        .input-luxury { background: #111; border: 1px solid #333; color: #fff; padding: 14px; border-radius: 8px; width: 100%; }
+        .input-luxury:focus { border-color: #D4AF37; outline: none; }
+        .hidden-date { display: none; }
     </style>
 </head>
 <body>
 
-<div class="hero">
-    <div>
-        <h1>Taxi Van Paris</h1>
-        <p style="font-size: 0.8rem; letter-spacing: 2px;">VOTRE CHAUFFEUR PRIVÉ EN CLASSE V</p>
-    </div>
-</div>
+    <!-- Navigation -->
+    <nav class="p-6 border-b border-white/10 flex justify-between items-center bg-black">
+        <div class="text-xl font-luxury tracking-widest gold-text">PARIS<span class="text-white">VAN</span>LUXE</div>
+        <a href="tel:0102030405" class="gold-bg px-6 py-2 rounded-full font-bold text-xs uppercase">Appeler Chauffeur</a>
+    </nav>
 
-<div class="container">
-    <div class="card">
-        <label>📍 POINT DE DÉPART</label>
-        <input type="text" id="start" placeholder="Adresse, Gare ou Hôtel">
-
-        <label>🏁 DESTINATION</label>
-        <input type="text" id="end" placeholder="Aéroport ou Adresse">
-
-        <label>👥 NOMBRE DE PASSAGERS</label>
-        <select id="pax">
-            <option value="1">1 à 4 Passagers (Tarif Standard)</option>
-            <option value="5">5 Passagers (+5,50 €)</option>
-            <option value="6">6 Passagers (+11,00 €)</option>
-            <option value="7">7 Passagers (+16,50 €)</option>
-        </select>
-
-        <label>👶 ÉQUIPEMENT (OFFERT)</label>
-        <select id="kids">
-            <option value="Aucun">Sans siège enfant</option>
-            <option value="1 Siège Bébé">1 Siège Bébé</option>
-            <option value="1 Réhausseur">1 Réhausseur</option>
-            <option value="Bébé + Réhausseur">Bébé + Réhausseur</option>
-        </select>
-
-        <label>📱 VOTRE TÉLÉPHONE</label>
-        <input type="tel" id="mobile" placeholder="06 .. .. .. ..">
-
-        <button class="btn btn-white" style="margin-top: 25px;" onclick="estimer()">CALCULER LE TARIF</button>
-
-        <div id="resultBox" class="price-box">
-            <span style="font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">Estimation Tarif Tout Inclus</span>
-            <div class="price-val" id="finalPrice">-- €</div>
-            <span id="paxNote" style="font-size: 0.7rem;">Mercedes Classe V Premium</span>
+    <!-- Hero & Calculateur -->
+    <section class="relative py-16 px-4">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover opacity-20" alt="Mercedes Classe V">
         </div>
 
-        <button id="waBtn" class="btn btn-gold" style="display:none;" onclick="reserver()">RÉSERVER SUR WHATSAPP</button>
-    </div>
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-luxury mb-4">TRANSFERT <span class="gold-text">PREMIUM</span></h1>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Gares • Aéroports • Hôtels (92, 95, 78, 93, 77)</p>
+            </div>
 
-    <div class="footer-icons">
-        <span>🚐 CLASSE V</span>
-        <span>🍼 SIÈGES BÉBÉ</span>
-        <span>💳 CB / AMEX</span>
-    </div>
-</div>
+            <!-- Calculateur -->
+            <div id="calculateur" class="card-glass p-8 rounded-3xl shadow-2xl">
+                <h2 class="text-xl font-luxury gold-text mb-8 text-center uppercase tracking-widest">Estimer votre trajet en Classe V</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Formulaire -->
+                    <div class="space-y-5">
+                        <div>
+                            <label class="text-[10px] uppercase text-gray-500 ml-1">Départ (Paris, Gares, CDG...)</label>
+                            <input type="text" placeholder="Lieu de prise en charge" class="input-luxury mt-1">
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase text-gray-500 ml-1">Destination (Hôtels, 92, 78...)</label>
+                            <input type="text" placeholder="Adresse de destination" class="input-luxury mt-1">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-[10px] uppercase text-gray-500 ml-1">Quand ?</label>
+                                <select id="choixTemps" onchange="toggleTime()" class="input-luxury mt-1">
+                                    <option value="immediat">Immédiat</option>
+                                    <option value="plus-tard">Plus tard</option>
+                                </select>
+                            </div>
+                            <div id="champDate" class="hidden-date">
+                                <label class="text-[10px] uppercase text-gray-500 ml-1">Date & Heure</label>
+                                <input type="datetime-local" class="input-luxury mt-1">
+                            </div>
+                        </div>
+                    </div>
 
-<script>
-    function estimer() {
-        const dep = document.getElementById('start').value.toLowerCase();
-        const arr = document.getElementById('end').value.toLowerCase();
-        const paxCount = parseInt(document.getElementById('pax').value);
-        const phone = document.getElementById('mobile').value;
+                    <!-- Options & Prix -->
+                    <div class="flex flex-col justify-between bg-black/40 p-6 rounded-2xl border border-white/5">
+                        <div>
+                            <p class="text-xs gold-text font-bold mb-4 italic uppercase">Équipements inclus sur demande :</p>
+                            <div class="space-y-3">
+                                <label class="flex justify-between items-center cursor-pointer">
+                                    <span class="text-sm">Siège Bébé (Nettoyé)</span>
+                                    <input type="checkbox" class="w-5 h-5 accent-yellow-600">
+                                </label>
+                                <label class="flex justify-between items-center cursor-pointer">
+                                    <span class="text-sm">Réhausseur Enfant</span>
+                                    <input type="checkbox" class="w-5 h-5 accent-yellow-600">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-center border-t border-white/10 pt-6">
+                            <p class="text-[10px] text-gray-500 uppercase mb-1">Tarif Fixe Estimé</p>
+                            <div class="text-5xl font-luxury gold-text">85€ <span class="text-sm text-white">TTC</span></div>
+                            <button class="w-full mt-6 gold-bg py-4 rounded-xl font-bold uppercase tracking-widest hover:scale-[1.02] transition">Réserver mon Van</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        if (dep.length < 3 || arr.length < 3 || phone.length < 8) {
-            alert("Veuillez remplir les adresses et votre téléphone.");
-            return;
+    <!-- Services Photos -->
+    <section class="py-24 bg-white text-black px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+            <div class="text-center group">
+                <div class="h-72 overflow-hidden rounded-2xl mb-6 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Classe V">
+                </div>
+                <h3 class="font-luxury text-lg mb-2">Mercedes Classe V</h3>
+                <p class="text-sm text-gray-500 font-light">Le confort absolu pour vos groupes jusqu'à 7 personnes.</p>
+            </div>
+            <div class="text-center group">
+                <div class="h-72 overflow-hidden rounded-2xl mb-6 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Chauffeur">
+                </div>
+                <h3 class="font-luxury text-lg mb-2">Service de Porte</h3>
+                <p class="text-sm text-gray-500 font-light">Chauffeurs professionnels en costume avec accueil personnalisé.</p>
+            </div>
+            <div class="text-center group">
+                <div class="h-72 overflow-hidden rounded-2xl mb-6 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Enfant siège auto">
+                </div>
+                <h3 class="font-luxury text-lg mb-2">Famille & Sécurité</h3>
+                <p class="text-sm text-gray-500 font-light">Sièges auto et réhausseurs systématiquement désinfectés.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer SEO Discret -->
+    <footer class="py-16 px-6 text-center text-gray-600 border-t border-white/5">
+        <p class="text-[10px] uppercase tracking-[0.3em] mb-4">
+            Hauts-de-Seine (92) • Val-d'Oise (95) • Yvelines (78) • Seine-Saint-Denis (93) • Seine-et-Marne (77)
+        </p>
+        <p class="text-xs font-light max-w-3xl mx-auto italic">
+            Spécialiste transferts Gares Parisiennes (Lyon, Nord, Montparnasse) et Aéroports (CDG, Orly). Service Hôtels et Disneyland Paris en Van Mercedes Classe V.
+        </p>
+    </footer>
+
+    <script>
+        function toggleTime() {
+            const select = document.getElementById('choixTemps');
+            const dateInput = document.getElementById('champDate');
+            dateInput.style.display = (select.value === 'plus-tard') ? 'block' : 'none';
         }
-
-        let prixBase = 0;
-        
-        // Logique Forfaits vs Calcul
-        if (arr.includes("roissy") || arr.includes("cdg") || dep.includes("roissy")) {
-            prixBase = 90;
-        } else if (arr.includes("orly") || dep.includes("orly")) {
-            prixBase = 80;
-        } else {
-            // Simulation : 15€ base + (15km * 2.80€) = 57€
-            prixBase = 15 + (15 * 2.80);
-        }
-
-        // Ajout supplément passagers (5,50€ à partir du 5ème)
-        let supplementPax = 0;
-        if (paxCount >= 5) {
-            supplementPax = (paxCount - 4) * 5.5;
-        }
-
-        let total = prixBase + supplementPax;
-
-        document.getElementById('finalPrice').innerText = Math.round(total) + " €";
-        document.getElementById('resultBox').style.display = "block";
-        document.getElementById('waBtn').style.display = "block";
-        
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
-
-    function reserver() {
-        const dep = document.getElementById('start').value;
-        const arr = document.getElementById('end').value;
-        const pax = document.getElementById('pax').value;
-        const kids = document.getElementById('kids').value;
-        const price = document.getElementById('finalPrice').innerText;
-        const phone = document.getElementById('mobile').value;
-
-        const msg = `DEMANDE TAXI VAN PARIS\n\n` +
-                    `🚐 VÉHICULE : Mercedes Classe V\n` +
-                    `📍 DÉPART : ${dep}\n` +
-                    `🏁 ARRIVÉE : ${arr}\n` +
-                    `👥 PASSAGERS : ${pax}\n` +
-                    `👶 SIÈGE : ${kids}\n` +
-                    `💰 PRIX : ${price}\n` +
-                    `📱 CLIENT : ${phone}`;
-
-        window.location.href = "https://wa.me/33649553640?text=" + encodeURIComponent(msg);
-    }
-</script>
-
+    </script>
 </body>
 </html>
+
