@@ -3,141 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Van Classe V Paris | Réservation 92, 95, 78, 93, 77</title>
+    <title>Van Classe V Paris | Alternative G7 Uber Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: #fff; }
-        .gold-text { color: #D4AF37; }
-        .gold-bg { background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); color: #000; }
-        .font-luxury { font-family: 'Cinzel', serif; }
-        .card-glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
-        .input-luxury { background: #111; border: 1px solid #333; color: #fff; padding: 14px; border-radius: 8px; width: 100%; }
-        .input-luxury:focus { border-color: #D4AF37; outline: none; }
-        .hidden-date { display: none; }
+        :root { --g7-red: #E30613; --g7-black: #000000; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #f4f4f4; color: var(--g7-black); }
+        .g7-red-bg { background-color: var(--g7-red); }
+        .g7-red-text { color: var(--g7-red); }
+        .btn-shadow { box-shadow: 0 4px 15px rgba(227, 6, 19, 0.3); }
+        .input-focus:focus { border-color: var(--g7-red); outline: none; box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.1); }
+        /* Style spécifique pour le calendrier */
+        input[type="datetime-local"] { color-scheme: light; }
+        .hidden-seo { display: none; visibility: hidden; height: 0; width: 0; overflow: hidden; }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="p-6 border-b border-white/10 flex justify-between items-center bg-black">
-        <div class="text-xl font-luxury tracking-widest gold-text">PARIS<span class="text-white">VAN</span>LUXE</div>
-        <a href="tel:0102030405" class="gold-bg px-6 py-2 rounded-full font-bold text-xs uppercase">Appeler Chauffeur</a>
+    <!-- Header G7 Style -->
+    <nav class="bg-black text-white p-4 sticky top-0 z-50 flex justify-between items-center border-b-4 border-[#E30613]">
+        <div class="flex items-center space-x-2">
+            <div class="g7-red-bg text-white font-black px-2 py-1 text-xl italic">VAN</div>
+            <span class="font-bold tracking-tighter text-lg text-white">PARIS PRIVÉ</span>
+        </div>
+        <a href="tel:0102030405" class="g7-red-bg px-4 py-2 rounded-md font-black text-sm animate-pulse">RESERVER 24/7</a>
     </nav>
 
-    <!-- Hero & Calculateur -->
-    <section class="relative py-16 px-4">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover opacity-20" alt="Mercedes Classe V">
-        </div>
+    <!-- Hero / Calculateur -->
+    <section class="bg-black text-white py-12 px-4 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto relative z-10">
+            <h1 class="text-3xl md:text-5xl font-black mb-6 italic uppercase leading-tight">Votre alternative <span class="g7-red-text">G7 / Uber</span><br>en Mercedes Classe V</h1>
+            
+            <div class="bg-white text-black p-6 rounded-xl shadow-2xl">
+                <div class="grid md:grid-cols-2 gap-6 italic font-bold mb-6 text-sm">
+                    <div class="flex items-center space-x-2"><span class="g7-red-text">✓</span> TARIF FIXE G7</div>
+                    <div class="flex items-center space-x-2"><span class="g7-red-text">✓</span> SIÈGES BÉBÉ INCLUS</div>
+                </div>
 
-        <div class="relative z-10 max-w-5xl mx-auto">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl md:text-6xl font-luxury mb-4">TRANSFERT <span class="gold-text">PREMIUM</span></h1>
-                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Gares • Aéroports • Hôtels (92, 95, 78, 93, 77)</p>
-            </div>
-
-            <!-- Calculateur -->
-            <div id="calculateur" class="card-glass p-8 rounded-3xl shadow-2xl">
-                <h2 class="text-xl font-luxury gold-text mb-8 text-center uppercase tracking-widest">Estimer votre trajet en Classe V</h2>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Formulaire -->
-                    <div class="space-y-5">
-                        <div>
-                            <label class="text-[10px] uppercase text-gray-500 ml-1">Départ (Paris, Gares, CDG...)</label>
-                            <input type="text" placeholder="Lieu de prise en charge" class="input-luxury mt-1">
-                        </div>
-                        <div>
-                            <label class="text-[10px] uppercase text-gray-500 ml-1">Destination (Hôtels, 92, 78...)</label>
-                            <input type="text" placeholder="Adresse de destination" class="input-luxury mt-1">
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="text-[10px] uppercase text-gray-500 ml-1">Quand ?</label>
-                                <select id="choixTemps" onchange="toggleTime()" class="input-luxury mt-1">
-                                    <option value="immediat">Immédiat</option>
-                                    <option value="plus-tard">Plus tard</option>
-                                </select>
-                            </div>
-                            <div id="champDate" class="hidden-date">
-                                <label class="text-[10px] uppercase text-gray-500 ml-1">Date & Heure</label>
-                                <input type="datetime-local" class="input-luxury mt-1">
-                            </div>
-                        </div>
+                <!-- Formulaire -->
+                <div class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <input type="text" placeholder="📍 Adresse de départ (92, 95, 78, CDG...)" class="w-full p-4 bg-gray-100 border-2 border-transparent rounded-lg input-focus">
+                        <input type="text" placeholder="🏁 Destination (Gares, Hôtels, 77, 93...)" class="w-full p-4 bg-gray-100 border-2 border-transparent rounded-lg input-focus">
                     </div>
 
-                    <!-- Options & Prix -->
-                    <div class="flex flex-col justify-between bg-black/40 p-6 rounded-2xl border border-white/5">
-                        <div>
-                            <p class="text-xs gold-text font-bold mb-4 italic uppercase">Équipements inclus sur demande :</p>
-                            <div class="space-y-3">
-                                <label class="flex justify-between items-center cursor-pointer">
-                                    <span class="text-sm">Siège Bébé (Nettoyé)</span>
-                                    <input type="checkbox" class="w-5 h-5 accent-yellow-600">
-                                </label>
-                                <label class="flex justify-between items-center cursor-pointer">
-                                    <span class="text-sm">Réhausseur Enfant</span>
-                                    <input type="checkbox" class="w-5 h-5 accent-yellow-600">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="mt-8 text-center border-t border-white/10 pt-6">
-                            <p class="text-[10px] text-gray-500 uppercase mb-1">Tarif Fixe Estimé</p>
-                            <div class="text-5xl font-luxury gold-text">85€ <span class="text-sm text-white">TTC</span></div>
-                            <button class="w-full mt-6 gold-bg py-4 rounded-xl font-bold uppercase tracking-widest hover:scale-[1.02] transition">Réserver mon Van</button>
-                        </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <select id="timeOption" onchange="checkTime()" class="w-full p-4 bg-gray-100 border-2 border-transparent rounded-lg input-focus font-bold">
+                            <option value="now">IMMEDIAT (ASAP)</option>
+                            <option value="later">RESERVER PLUS TARD</option>
+                        </select>
+                        <input type="datetime-local" id="dateTime" class="hidden w-full p-4 bg-gray-100 border-2 border-transparent rounded-lg input-focus">
                     </div>
+
+                    <!-- Options Enfants -->
+                    <div class="grid grid-cols-2 gap-4 py-2">
+                        <label class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition">
+                            <input type="checkbox" class="w-5 h-5 accent-[#E30613]">
+                            <span class="text-xs font-bold uppercase">Siège Bébé</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition">
+                            <input type="checkbox" class="w-5 h-5 accent-[#E30613]">
+                            <span class="text-xs font-bold uppercase">Réhausseur</span>
+                        </label>
+                    </div>
+
+                    <div class="text-center py-4 border-t border-gray-100">
+                        <span class="text-gray-500 text-xs uppercase font-bold">Prix Van Garanti :</span>
+                        <div class="text-4xl font-black g7-red-text">85,00 €</div>
+                    </div>
+
+                    <button class="w-full g7-red-bg text-white font-black py-5 rounded-lg text-xl btn-shadow hover:scale-[1.02] transition uppercase italic">Commander mon Van</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Photos -->
-    <section class="py-24 bg-white text-black px-6">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
-            <div class="text-center group">
-                <div class="h-72 overflow-hidden rounded-2xl mb-6 shadow-xl">
-                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Classe V">
-                </div>
-                <h3 class="font-luxury text-lg mb-2">Mercedes Classe V</h3>
-                <p class="text-sm text-gray-500 font-light">Le confort absolu pour vos groupes jusqu'à 7 personnes.</p>
+    <!-- Photos Section -->
+    <section class="py-12 px-4 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg border-b-4 border-black">
+                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover" alt="Van Mercedes G7">
+                <div class="p-4"><h3 class="font-black italic">CLASSE V 7 PLACES</h3></div>
             </div>
-            <div class="text-center group">
-                <div class="h-72 overflow-hidden rounded-2xl mb-6 shadow-xl">
-                    <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Chauffeur">
-                </div>
-                <h3 class="font-luxury text-lg mb-2">Service de Porte</h3>
-                <p class="text-sm text-gray-500 font-light">Chauffeurs professionnels en costume avec accueil personnalisé.</p>
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg border-b-4 border-[#E30613]">
+                <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover" alt="Chauffeur G7 Uber">
+                <div class="p-4"><h3 class="font-black italic text-[#E30613]">SERVICE CHAUFFEUR VIP</h3></div>
             </div>
-            <div class="text-center group">
-                <div class="h-72 overflow-hidden rounded-2xl mb-6 shadow-xl">
-                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Enfant siège auto">
-                </div>
-                <h3 class="font-luxury text-lg mb-2">Famille & Sécurité</h3>
-                <p class="text-sm text-gray-500 font-light">Sièges auto et réhausseurs systématiquement désinfectés.</p>
+            <div class="bg-white rounded-xl overflow-hidden shadow-lg border-b-4 border-black">
+                <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=600" class="w-full h-48 object-cover" alt="Siège bébé Van">
+                <div class="p-4"><h3 class="font-black italic">FAMILLE & SÉCURITÉ</h3></div>
             </div>
         </div>
     </section>
 
-    <!-- Footer SEO Discret -->
-    <footer class="py-16 px-6 text-center text-gray-600 border-t border-white/5">
-        <p class="text-[10px] uppercase tracking-[0.3em] mb-4">
-            Hauts-de-Seine (92) • Val-d'Oise (95) • Yvelines (78) • Seine-Saint-Denis (93) • Seine-et-Marne (77)
-        </p>
-        <p class="text-xs font-light max-w-3xl mx-auto italic">
-            Spécialiste transferts Gares Parisiennes (Lyon, Nord, Montparnasse) et Aéroports (CDG, Orly). Service Hôtels et Disneyland Paris en Van Mercedes Classe V.
-        </p>
+    <!-- RÉFÉRENCEMENT CACHÉ (Invisible pour l'utilisateur, visible pour Google) -->
+    <div class="hidden-seo">
+        <h2>Alternative G7 Van et Uber Van Paris</h2>
+        <p>Réservez votre taxi van premium pour l'Aéroport Roissy CDG, Orly et Beauvais. 
+           Chauffeur privé disponible dans le 95 (Val d'Oise), 92 (Hauts-de-Seine), 78 (Yvelines), 77 (Seine-et-Marne), 93 (Seine-Saint-Denis).
+           Service de transfert gare de Lyon, gare du Nord, gare Montparnasse. Mercedes Classe V avec siège auto bébé et réhausseur.
+           Tarif fixe identique G7 Van, Uber Van, Van de luxe 7 places. Hôtels Paris, Disneyland Paris, Versailles.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-10 px-4 text-center">
+        <p class="text-[10px] text-gray-500 font-bold tracking-widest uppercase mb-4">Service Indépendant • Disponible 24h/24 • 7j/7</p>
+        <div class="flex justify-center space-x-4 opacity-50 grayscale">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png" width="40" alt="Uber">
+            <span class="font-bold">G7</span>
+        </div>
     </footer>
 
     <script>
-        function toggleTime() {
-            const select = document.getElementById('choixTemps');
-            const dateInput = document.getElementById('champDate');
-            dateInput.style.display = (select.value === 'plus-tard') ? 'block' : 'none';
+        function checkTime() {
+            const select = document.getElementById('timeOption');
+            const date = document.getElementById('dateTime');
+            date.className = (select.value === 'later') ? 'block w-full p-4 bg-gray-100 border-2 border-transparent rounded-lg input-focus' : 'hidden';
         }
     </script>
 </body>
 </html>
+
 
