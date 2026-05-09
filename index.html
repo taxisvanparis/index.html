@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Van Paris - Réservation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero-section">
+        <nav class="navbar">
+            <div class="logo"><span class="gold-text">TAXI VAN PARIS</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Nos Services</a></li>
+                <li><a href="#">Tarifs</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-content">
+            <h1 class="main-title">Votre Transport de Prestige à Paris</h1>
+            
+            <div class="booking-card">
+                <h3>Réservation</h3>
+                <form id="taxiForm">
+                    <input type="text" placeholder="Point de départ" required>
+                    <input type="text" placeholder="Destination" required>
+                    
+                    <div class="row">
+                        <input type="date" required>
+                        <input type="time" required>
+                    </div>
+
+                    <div class="select-group">
+                        <label>Nombre de passagers</label>
+                        <select id="passagers">
+                            <option value="1">1 à 4 Passagers (Standard)</option>
+                            <option value="5">5 Passagers (+5.50€)</option>
+                            <option value="6">6 Passagers (+11.00€)</option>
+                            <option value="7">7 Passagers (+16.50€)</option>
+                            <option value="8">8 Passagers (+22.00€)</option>
+                        </select>
+                    </div>
+
+                    <div class="select-group">
+                        <label>Options Sièges</label>
+                        <select id="optionSiege">
+                            <option value="0">Aucun</option>
+                            <option value="2.90">Siège Bébé ou Réhausseur (+2.90€)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Distance estimée (km)</label>
+                        <input type="number" id="distance" placeholder="Ex: 15" required>
+                    </div>
+
+                    <button type="button" class="btn-calc" onclick="calculerPrix()">Calculer Tarifs</button>
+                    
+                    <div id="resultatArea" class="result-display">
+                        Prix Estimé : <span id="prixTotal">--</span> €
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <script>
+    function calculerPrix() {
+        const distance = parseFloat(document.getElementById('distance').value);
+        const passagers = parseInt(document.getElementById('passagers').value);
+        const prixOptionSiege = parseFloat(document.getElementById('optionSiege').value);
+
+        if (!distance || distance <= 0) {
+            alert("Veuillez entrer une distance en km");
+            return;
+        }
+
+        // Calcul selon tes tarifs
+        let total = 15; // Prise en charge
+        total += (distance * 2.90); // Prix au km
+        total += prixOptionSiege; // Option siège
+
+        // Supplément passagers à partir du 5ème
+        if (passagers > 4) {
+            total += (passagers - 4) * 5.50;
+        }
+
+        document.getElementById('resultatArea').style.display = "block";
+        document.getElementById('prixTotal').innerText = total.toFixed(2);
+    }
+    </script>
+</body>
+</html>
