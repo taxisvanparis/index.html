@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Taxi Van Paris</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --gold:#C9A84C;
+      --gold-light:#E8C97A;
+      --noir:#0A0A0A;
+      --noir-2:#111111;
+      --noir-3:#1A1A1A;
+      --noir-4:#222222;
+      --blanc:#F8F5EE;
+      --blanc-2:#EDE8DF;
+      --gris:#888888;
+    }
+
+    *,*::before,*::after{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{scroll-behavior:smooth}
+
+    body{
+      background:var(--noir);
+      color:var(--blanc);
+      font-family:'DM Sans',sans-serif;
+      overflow-x:hidden;
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+      radial-gradient(ellipse 80% 60% at 70% 40%,rgba(201,168,76,.13)0%,transparent 60%),
+      radial-gradient(ellipse 50% 80% at 10% 80%,rgba(201,168,76,.07)0%,transparent 50%);
+    }
+
+    .hero-grid{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background-image:
+      linear-gradient(rgba(201,168,76,.04)1px,transparent 1px),
+      linear-gradient(90deg,rgba(201,168,76,.04)1px,transparent 1px);
+      background-size:60px 60px;
+    }
+
+    nav{
+      position:relative;
+      z-index:10;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:26px 60px;
+      border-bottom:1px solid rgba(201,168,76,.15);
+    }
+
+    .logo{
+      font-family:'Playfair Display',serif;
+      font-size:1.65rem;
+      font-weight:900;
+      letter-spacing:-.5px;
+      text-decoration:none;
+      color:var(--blanc);
+    }
+
+    .logo span{color:var(--gold)}
+
+    .nav-links{
+      display:flex;
+      gap:32px;
+      list-style:none;
+    }
+
+    .nav-links a{
+      color:var(--gris);
+      font-size:.82rem;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      text-decoration:none;
+      transition:color .2s;
+    }
+
+    .nav-links a:hover{color:var(--gold)}
+
+    .nav-cta{
+      background:var(--gold)!important;
+      color:var(--noir)!important;
+      padding:9px 22px!important;
+      border-radius:2px;
+      font-weight:700!important;
+    }
+
+    .hero-content{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:60px 24px 48px;
+      text-align:center;
+      position:relative;
+      z-index:2;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid rgba(201,168,76,.4);
+      padding:6px 18px;
+      border-radius:100px;
+      font-size:.76rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:28px;
+    }
+
+    .hero-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.8rem,7vw,6rem);
+      font-weight:900;
+      line-height:1.05;
+      margin-bottom:20px;
+    }
+
+    .hero-title .gold{color:var(--gold)}
+
+    .hero-title em{
+      display:block;
+      font-style:italic;
+      font-weight:400;
+      font-size:.62em;
+      color:var(--blanc-2);
+      margin-top:6px;
+    }
+
+    .hero-sub{
+      font-size:1rem;
+      color:var(--gris);
+      max-width:500px;
+      line-height:1.75;
+      margin-bottom:32px;
+    }
+
+    .hero-cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-bottom:36px;
+    }
+
+    .btn-contact{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:13px 24px;
+      border-radius:2px;
+      font-size:.9rem;
+      font-weight:700;
+      text-decoration:none;
+      transition:transform .2s;
+    }
+
+    .btn-contact:hover{transform:translateY(-2px)}
+
+    .btn-tel{
+      background:#fff;
+      color:#111;
+    }
+
+    .btn-wa{
+      background:#25D366;
+      color:#fff;
+    }
+
+    .hero-scroll{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--gris);
+      font-size:.78rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      cursor:pointer;
+    }
+
+    /* BOOKING */
+    #booking{
+      background:var(--noir-2);
+      padding:80px 60px;
+      position:relative;
+    }
+
+    #booking::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:60px;
+      right:60px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    }
+
+    .section-label{
+      font-size:.76rem;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    .section-title{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.9rem,4vw,2.8rem);
+      font-weight:700;
+      margin-bottom:44px;
+    }
+
+    .booking-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .form-card,
+    .result-card{
+      background:var(--noir-3);
+      border:1px solid rgba(201,168,76,.13);
+      border-radius:4px;
+      padding:36px;
+    }
+
+    /* FEATURES */
+    #features{
+      padding:90px 60px;
+      background:var(--noir);
+      position:relative;
+    }
+
+    #features::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:60px;
+      right:60px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(201,168,76,.3),transparent);
+    }
+
+    .feat-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:28px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .feat-card{
+      padding:28px;
+      border:1px solid rgba(201,168,76,.1);
+      border-radius:4px;
+      background:var(--noir-2);
+    }
+
+    .feat-icon{
+      font-size:1.9rem;
+      margin-bottom:16px;
+      display:block;
+    }
+
+    .feat-card h3{
+      font-family:'Playfair Display',serif;
+      font-size:1.05rem;
+      margin-bottom:8px;
+    }
+
+    .feat-card p{
+      font-size:.83rem;
+      color:var(--gris);
+      line-height:1.7;
+    }
+
+    footer{
+      padding:40px 60px;
+      background:var(--noir);
+      border-top:1px solid rgba(201,168,76,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+
+    .footer-logo{
+      font-family:'Playfair Display',serif;
+      font-size:1.35rem;
+      font-weight:900;
+    }
+
+    .footer-logo span{color:var(--gold)}
+
+    .footer-copy{
+      font-size:.78rem;
+      color:var(--gris);
+    }
+
+    .footer-links{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links a{
+      font-size:.78rem;
+      color:var(--gris);
+      text-decoration:none;
+    }
+
+    @media(max-width:900px){
+      nav{padding:18px 20px}
+
+      .nav-links{display:none}
+
+      #booking,#features,footer{
+        padding:56px 20px;
+      }
+
+      .booking-grid,
+      .feat-grid{
+        grid-template-columns:1fr;
+      }
+
+      #booking::before,
+      #features::before{
+        left:20px;
+        right:20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <nav>
+    <a class="logo" href="#home">Taxi<span>Van</span>Paris</a>
+
+    <ul class="nav-links">
+      <li><a href="#booking">Réserver</a></li>
+      <li><a href="#features">Services</a></li>
+      <li><a href="#booking" class="nav-cta">Commander</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-badge">Van & Berline Premium</div>
+
+    <h1 class="hero-title">
+      Votre confort,<br>
+      <span class="gold">notre priorité</span>
+      <em>Le taxi qui vous ressemble</em>
+    </h1>
+
+    <p class="hero-sub">
+      Réservation instantanée, tarifs transparents, sièges bébé disponibles.
+      Van ou berline, partout en France et en Europe.
+    </p>
+
+    <div class="hero-cta">
+      <a class="btn-contact btn-tel" href="tel:+33649553640">
+        📞 Appeler maintenant
+      </a>
+
+      <a class="btn-contact btn-wa" href="https://wa.me/33649553640" target="_blank">
+        WhatsApp
+      </a>
+    </div>
+
+    <div class="hero-scroll" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+      <span>Calculer mon tarif</span>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label">✦ Estimation instantanée</div>
+    <h2 class="section-title">Calculez votre tarif</h2>
+
+    <div class="booking-grid">
+      <div class="form-card">
+        <p style="color:var(--gris);line-height:1.8">
+          Votre formulaire de réservation reste ici.
+          Conservez votre ancien formulaire JavaScript complet.
+        </p>
+      </div>
+
+      <div class="result-card">
+        <p style="color:var(--gris);line-height:1.8">
+          Le résultat du calculateur tarifaire s'affichera ici.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label">✦ Nos engagements</div>
+    <h2 class="section-title">Un service d'exception</h2>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-icon">🛡️</span>
+        <h3>Sécurité maximale</h3>
+        <p>Chauffeurs professionnels et véhicules contrôlés.</p>
+      </div>
+
+      <div class="feat-card">
+        <span class="feat-icon">⏱️</span>
+        <h3>Ponctualité garantie</h3>
+        <p>Suivi trafic temps réel pour votre arrivée à l'heure.</p>
+      </div>
+
+      <div class="feat-card">
+        <span class="feat-icon">💳</span>
+        <h3>Tarifs transparents</h3>
+        <p>Aucune surprise : le prix calculé est le prix final.</p>
+      </div>
+
+      <div class="feat-card">
+        <span class="feat-icon">📱</span>
+        <h3>Disponible 24h/24</h3>
+        <p>Un chauffeur disponible à toute heure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Taxi<span>Van</span>Paris</div>
+
+  <div class="footer-copy">
+    © 2025 TaxiVanParis — Tous droits réservés
+  </div>
+
+  <div class="footer-links">
+    <a href="#">Mentions légales</a>
+    <a href="tel:+33649553640">📞 +33 6 49 55 36 40</a>
+    <a href="https://wa.me/33649553640" target="_blank">💬 WhatsApp</a>
+  </div>
+</footer>
+
+</body>
+</html>
